@@ -1,3 +1,3 @@
 #Tasks
 
- - Explore (jsdocs)[http://usejsdoc.org/]
+ - Explore [jsdocs](http://usejsdoc.org/)
