@@ -11,7 +11,7 @@
  */
 function makeAjaxCall(url, callback) {
     var xhr = new XMLHttpRequest;
-    console.log(xhr.readyState);
+    //console.log(xhr.readyState);
     xhr.addEventListener('readystatechange', function () {
         console.log(xhr.readyState);
         if (xhr.readyState === 4 && xhr.status === 200) {

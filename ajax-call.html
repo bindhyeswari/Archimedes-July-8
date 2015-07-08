@@ -7,9 +7,6 @@
     <script src="ajax-call.js"></script>
     <script>
 
-
-
-
       /* makeAjaxCall('https://api.github.com/search/repositories?q=nodejs', function (data) {
            console.log(data);
        });*/
@@ -21,16 +18,49 @@
                     var url = 'https://api.github.com/search/repositories?q=' + this.value;
                     makeAjaxCall(url, function (obj) {
                         console.log(obj);
+                        listRepos(obj.items);
                     });
                 }
-            })
+            });
+
+            function listRepos(arr_repos) {
+                /* todo: Coupled code, change to param later */
+                var ul = document.getElementById('results');
+                ul.innerHTML = '';
+
+                if (!Array.isArray(arr_repos)) arr_repos = Array.prototype.slice.call(arr_repos);
+                arr_repos.forEach(function (repo) {
+                    // create an li element
+                    var li = createElement('li', ul, '', '');
+                    // create a hyperlink
+                    createElement('a', li, '', repo.name, {
+                        'href': 'http://github.com' +
+                    });
+                });
+            }
         });
+
+
+        function createElement(elementType, parent, className, innerHTML, custom) {
+            var element = document.createElement(elementType);
+            if (parent) parent.appendChild(element);
+            if (className) element.className = className;
+            if (innerHTML) element.innerHTML = innerHTML;
+
+            if (typeof custom !== 'undefined') {
+                for (var prop in custom) {
+                    element.setAttribute(prop, custom[prop]);
+                }
+            }
+
+            return element;
+        }
 
     </script>
 </head>
 <body>
 
     <input type="text"/>
-
+    <ul id="results"></ul>
 </body>
 </html>
