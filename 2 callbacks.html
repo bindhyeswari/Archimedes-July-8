@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function printRandomValue(callback, i) {
+            var interval = ~~(Math.random() * 1000); // 997
+            setTimeout(function () {
+                callback(interval + ', index: ', i);
+            }, interval);
+        }
+
+        for (var i = 0; i < 10; i++) {
+            printRandomValue(console.log, i);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
