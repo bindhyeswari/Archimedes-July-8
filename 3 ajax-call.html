@@ -5,6 +5,43 @@
     <title></title>
     <link rel="stylesheet" href="base.css"/>
     <script src="ajax-call.js"></script>
+    <style>
+        ul {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        li {
+            display: inline-block;
+            border: 1px solid #aaa;
+            margin: 0.5em;
+            padding: 0.5em;
+            width: 10em;
+            height: 10em;
+            position: relative;
+        }
+
+        li > a {
+            position: absolute;
+            padding: 0.5em;
+            bottom: 0.5em;
+            right: 0.5em;
+            word-break: break-all;
+            background-color: rgba(0, 0, 0, 0.82);
+            text-decoration: none;
+            color: white;
+            font-size: 0.85em;
+        }
+
+        li > img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
     <script>
 
       /* makeAjaxCall('https://api.github.com/search/repositories?q=nodejs', function (data) {
@@ -16,17 +53,12 @@
                 if (event.keyCode === 13 && this.value) {
                     console.log(this.value);
                     var url = 'https://api.github.com/search/repositories?q=' + this.value;
-                    makeAjaxCall(url, function (obj, xhr) {
+                    makeAjaxCall(url, function (obj) {
                         console.log(obj);
-                        getLinkObject(xhr.getResponseHeader('Link'));
                         listRepos(obj.items);
                     });
                 }
             });
-
-            function getLinkObject(link) {
-                console.log(link);
-            }
 
             function listRepos(arr_repos) {
                 /* todo: Coupled code, change to param later */
@@ -37,9 +69,14 @@
                 arr_repos.forEach(function (repo) {
                     // create an li element
                     var li = createElement('li', ul, '', '');
+                    // create an image element
+                    createElement('img', li, '', '', {
+                        'src': repo.owner.avatar_url
+                    });
                     // create a hyperlink
                     createElement('a', li, '', repo.name, {
-                        'href': 'http://github.com/' + repo.name
+                        'href': 'http://github.com/' + repo.name,
+                        'target': '_blank'
                     });
                 });
             }

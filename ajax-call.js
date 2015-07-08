@@ -16,7 +16,7 @@ function makeAjaxCall(url, callback) {
         console.log(xhr.readyState);
         if (xhr.readyState === 4 && xhr.status === 200) {
             var obj = JSON.parse(xhr.responseText);
-            callback(obj);
+            callback(obj, xhr);
         }
     });
     xhr.open('get', url);
