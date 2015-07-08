@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        console.log(window.location);
+
+        console.log(window.location === document.location);
+
+        // document.location = 'http://www.google.com';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('button').addEventListener('click', function () {
+                window.open('http://www.google.com', '_blank');
+            });
+
+            console.log(document.links); // access all the links in the page
+        });
+
+    </script>
+</head>
+<body>
+    <a href="http://www.google.com">Google</a>
+    <a href="/data">Data</a>
+    <button>Go to Google</button>
+</body>
+</html>

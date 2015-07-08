@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        div.data {
+            background-color: red;
+        }
+
+    </style>
+    <style>
+
+        div {
+            background-color: red;
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log(document.styleSheets);
+
+            var sheets = Array.prototype.slice.call(document.styleSheets);
+
+            console.log('Found ', sheets.length, ' stylesheets for the document.');
+            sheets.forEach(function (sheet, sheet_index) {
+                console.log('Following is the data for the sheet: ', sheet_index + 1);
+                console.log('===========================');
+                Array.prototype.slice.call(sheet.cssRules).forEach(function (cssRule, css_rule_index, rules) {
+                    console.log('Found ', rules.length, ' rules for the stylesheet ', sheet_index);
+                    console.log(cssRule.selectorText);
+                    console.log('Following is the data for the cssRule: ', css_rule_index + 1);
+                });
+                console.log('===========================');
+            });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
