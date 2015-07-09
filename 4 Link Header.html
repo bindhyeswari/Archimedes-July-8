@@ -3,6 +3,13 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+
+        div#info.myclass {
+
+        }
+
+    </style>
     <script>
 
         var link = '<https://api.github.com/search/repositories?q=angularjs&page=2>; rel="next", ' +
@@ -17,7 +24,7 @@
 
             console.log(link);
 
-            console.log(link.match(/<[^>]+>;\s?rel="[^"]+"/gmi));
+            console.log(link.match(/<[^>]+>;\s?(rel)="[^"]+"/gmi));
 
             var regex = /<([^>]+)>;\s?rel="([^"]+)"/gmi;
 
@@ -25,7 +32,7 @@
             do {
                 data = regex.exec(link);
                 if (data) {
-                    console.log(data[1], data[2]);
+                    console.log();
                     obj[data[2]] = data[1]
                 }
             } while (data);
@@ -46,11 +53,15 @@
 
             var link_obj = getLinkObject(link);
             for (var prop in link_obj) {
-                var selector = 'a[data-link="' + prop + '"'; // a[data-link="prev"]
+                var selector = 'a[data-link="' + prop + '"]'; // a[data-link="prev"]
                 document.querySelector(selector).href = link_obj[prop];
             }
 
         });
+
+        function print(str) {
+            console.log(str, '::(value):: ', eval(str));
+        }
 
     </script>
 </head>
@@ -59,5 +70,7 @@
 <a href="" data-link="prev">Next</a>
 <a href="" data-link="next">Next</a>
 <a href="" data-link="last">Next</a>
+
+
 </body>
 </html>
